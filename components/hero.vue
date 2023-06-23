@@ -112,15 +112,30 @@
         },
         {
             role: "user",
-            content: `Identify the following names ${namesInput.vale} based on the text delimited by triple dashes --- ${text} --- `
+            content: `Identify the following names ${namesInput.vale} based on the text delimited by triple dashes --- ${text} --- and return a text like this
+                     Identify names : value
+
+                     if not names was identify return a text like this
+                     No names identified
+            `
         }]
 
-    const chatCompletion = await openai.createChatCompletion({
+    try {
+      const chatCompletion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages,
         });
 
         return await chatCompletion.data.choices[0].message;
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data.error.message);
+        return `${error.response.status}, ${error.response.data.error.message}`
+      } else {
+        console.error(`Error with OpenAI API request: ${error.message}`);
+        return `Error with OpenAI API request: ${error.message}`
+      }
+    }    
   }
 
   function startOpenAI(apiKey: string) {

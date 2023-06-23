@@ -1,6 +1,12 @@
-# Nuxt 3 Minimal Starter
+# Common OpenAI Task using Nuxt 3
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+TODO :
+
+- ✅Inferring
+- 🚧Transforming
+- 🚧Expanding
+
+![](/assets/img/demo-image.png) to learn more.
 
 ## Setup
 
